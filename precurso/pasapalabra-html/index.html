@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JUDITH'S PASAPALABRA</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="shortcut icon" href="bf-icon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <section class="gameintro-active">
+      <div class="fade"></div>
+      <div class="fake-star-wars">
+        <div class="crawl">
+          <div class="title">
+            <p>Skylab Coders Presenta:</p>
+            <h1>LA BATALLA DE LAS PALABRAS</h1>
+          </div>
+
+          <p>
+            Bienvenido, joven padawan, a la versión más GALÁCTICA del
+            Pasapalabra de SKYLAB CODERS.
+          </p>
+          <p>
+            Los espías REBELDES se han hecho con el poder de los planos de la
+            ESTRELLA DE LA MUERTE. Tu compañero ha sido secuestrado por el
+            IMPERIO, y va a ser tu misión vértelas en una dura batalla, para
+            salvarlo... ¡Una batalla a muerte en el ROSCO DEL PASAPALABRA!
+          </p>
+          <p>
+            Conoces las reglas. Para cada definición, responde con una sola
+            palabra. El tiempo apremia, así que olvídate del uso de acentos...
+            En caso de no estar seguro, deja la palabra para el final con
+            'PASAPALABRA'.
+          </p>
+          <p>¿Crees estar listx para enfrentarte al Imperio...?</p>
+          <p class="btn-p"><button class="btn-start">¿PREPARADO?</button></p>
+        </div>
+      </div>
+    </section>
+    <section class="user-intro">
+      <div class="insert-username intro-active">
+        <p>Por favor, introduce tu nombre en clave.</p>
+        <p>Sólo son válidos dígitos del idioma común.</p>
+        <input type="text" class="get-username" placeholder="USUARIO" />
+        <br />
+        <input type="button" class="submit-username" value="INICIAR" />
+      </div>
+    </section>
+    <div class="contest-content intro-active">
+      <div class="title">PASAPALABRA</div>
+      <div class="text">
+        <p>
+          ¡Joven padawan
+          <span class="padawan-username">USUARIO</span>, la dura batalla ha dado
+          comienzo! Responde antes que el contador llegue a 0, si no quieres
+          acabar congelado en carbonita...
+        </p>
+
+        <p>Atajos con el teclado: ⬇ Pasapalabra | ⤶ Responder</p>
+
+        <p class="pasapalabra-correct"></p>
+        <p class="pasapalabra-question">
+          *****CON LA X. PREGUNTA PREGUNTA Lorem ipsum, dolor sit amet
+          consectetur adipisicing elit. Natus nulla sit debitis cumque
+        </p>
+      </div>
+      <!-- PASAPALABRA INPUT -->
+      <div class="pasapalabra-inputs">
+        <p><input type="text" id="game-answer" /></p>
+
+        <div class="pasapalabra-btns">
+          <input id="btn-pasapalabra" type="button" value="PASAPALABRA" />
+          <input id="btn-answer" type="button" value="RESPONDER" />
+        </div>
+      </div>
+    </div>
+    <div class="ranking-content intro-active">
+      <div class="title">RANKING</div>
+      <div class="text show-ranking">
+        <p class="ranking-congrats"></p>
+        <p>El ranking se mostrará a continuación.</p>
+        <p class="ranking-table"></p>
+      </div>
+    </div>
+    <div class="maingame-grid intro-active">
+      <div id="rosco">
+        <div class="rosco-letter" id="a" style="left: 333px; top: 44px">
+          <p>A</p>
+        </div>
+        <div class="rosco-letter" id="b" style="left: 389px; top: 60px">
+          <p>B</p>
+        </div>
+        <div class="rosco-letter" id="c" style="left: 439px; top: 89px">
+          <p>C</p>
+        </div>
+        <div class="rosco-letter" id="d" style="left: 482px; top: 129px">
+          <p>D</p>
+        </div>
+        <div class="rosco-letter" id="e" style="left: 513px; top: 178px">
+          <p>E</p>
+        </div>
+        <div class="rosco-letter" id="f" style="left: 533px; top: 232px">
+          <p>F</p>
+        </div>
+        <div class="rosco-letter" id="g" style="left: 540px; top: 290px">
+          <p>G</p>
+        </div>
+        <div class="rosco-letter" id="h" style="left: 533px; top: 348px">
+          <p>H</p>
+        </div>
+        <div class="rosco-letter" id="i" style="left: 513px; top: 402px">
+          <p>I</p>
+        </div>
+        <div class="rosco-letter" id="j" style="left: 482px; top: 451px">
+          <p>J</p>
+        </div>
+        <div class="rosco-letter" id="k" style="left: 439px; top: 491px">
+          <p>K</p>
+        </div>
+        <div class="rosco-letter" id="l" style="left: 389px; top: 520px">
+          <p>L</p>
+        </div>
+        <div class="rosco-letter" id="m" style="left: 333px; top: 536px">
+          <p>M</p>
+        </div>
+        <div class="rosco-letter" id="n" style="left: 275px; top: 540px">
+          <p>N</p>
+        </div>
+        <div class="rosco-letter" id="ñ" style="left: 218px; top: 529px">
+          <p>Ñ</p>
+        </div>
+        <div class="rosco-letter" id="o" style="left: 165px; top: 507px">
+          <p>O</p>
+        </div>
+        <div class="rosco-letter" id="p" style="left: 118px; top: 472px">
+          <p>P</p>
+        </div>
+        <div class="rosco-letter" id="q" style="left: 81px; top: 427px">
+          <p>Q</p>
+        </div>
+        <div class="rosco-letter" id="r" style="left: 55px; top: 376px">
+          <p>R</p>
+        </div>
+        <div class="rosco-letter" id="s" style="left: 42px; top: 319px">
+          <p>S</p>
+        </div>
+        <div class="rosco-letter" id="t" style="left: 42px; top: 261px">
+          <p>T</p>
+        </div>
+        <div class="rosco-letter" id="u" style="left: 55px; top: 204px">
+          <p>U</p>
+        </div>
+        <div class="rosco-letter" id="v" style="left: 81px; top: 153px">
+          <p>V</p>
+        </div>
+        <div class="rosco-letter" id="w" style="left: 118px; top: 108px">
+          <p>W</p>
+        </div>
+        <div class="rosco-letter" id="x" style="left: 165px; top: 73px">
+          <p>X</p>
+        </div>
+        <div class="rosco-letter" id="y" style="left: 218px; top: 51px">
+          <p>Y</p>
+        </div>
+        <div class="rosco-letter" id="z" style="left: 275px; top: 40px">
+          <p>Z</p>
+        </div>
+        <img src="r2d2.gif" class="img-r2d2" alt="" />
+        <div class="countdown">180</div>
+      </div>
+    </div>
+    <script src="app_NEW.js"></script>
+  </body>
+</html>
+
+<!-- circle creared with http://jsfiddle.net/ThiefMaster/LPh33/4/ -->

@@ -1,0 +1,407 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #83af9b;
+  font-family: sans-serif;
+  background-image: url(https://starwarsblog.starwars.com/wp-content/uploads/2020/04/star-wars-backgrounds-25.jpg);
+}
+@font-face {
+  font-family: "starjedi_special_editionRg";
+  src: url("stjedise-webfont.woff2") format("woff2"),
+    url("stjedise-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+/*  */
+/*  */
+/* STAR WARS ANIMATION */
+/*  */
+/*  */
+
+.fade {
+  position: relative;
+  width: 100%;
+  min-height: 60vh;
+  top: -25px;
+  background-image: linear-gradient(0deg, transparent, black 75%);
+  visibility: visible;
+  opacity: 1;
+}
+
+.fake-star-wars {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: 600px;
+  color: #feda4a;
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: 500%;
+  font-weight: 600;
+  letter-spacing: 6px;
+  line-height: 150%;
+  perspective: 400px;
+  text-align: justify;
+  visibility: visible;
+  opacity: 1;
+  z-index: 1;
+}
+
+.crawl {
+  position: relative;
+  top: 999px;
+  transform-origin: 50% 100%;
+  animation: crawl 60s linear;
+}
+
+.crawl > .title {
+  font-size: 90%;
+  text-align: center;
+}
+
+.crawl > .title h1 {
+  margin: 0 0 100px;
+  text-transform: uppercase;
+}
+
+.btn-p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-start {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 42px;
+  border: 4px solid #feda4a;
+  display: inline-block;
+  cursor: pointer;
+  color: #feda4a;
+  font-family: Trebuchet MS;
+  font-size: 5rem;
+  font-weight: bold;
+  padding: 18px 40px;
+  text-decoration: none;
+}
+.btn-start:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.btn-start:active {
+  position: relative;
+  top: 1px;
+}
+
+@keyframes crawl {
+  0% {
+    top: 0;
+    transform: rotateX(20deg) translateZ(0);
+  }
+  100% {
+    top: -6000px;
+    transform: rotateX(25deg) translateZ(-2500px);
+  }
+}
+
+/*  */
+/*  */
+/* INTRODUCE USERNAME */
+/*  */
+/*  */
+
+.user-intro {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: visible;
+  opacity: 1;
+}
+.insert-username {
+  width: 25%;
+  height: 50%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 196, 0, 0.5);
+  color: white;
+  font-family: Trebuchet MS;
+  border-radius: 25%;
+  text-align: center;
+  letter-spacing: 0.1rem;
+  line-height: 2rem;
+  text-transform: uppercase;
+  font-size: 2rem;
+}
+.get-username {
+  border-width: 2px;
+  border-style: solid;
+  padding: 10px;
+  background-color: #74714c70;
+  border: 3px solid #feda4a;
+  color: rgb(255, 255, 255);
+  font-size: 19px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  outline: none;
+}
+
+.get-username:hover,
+.get-username:active {
+  background-color: rgba(255, 255, 255, 0.5);
+  outline: none;
+}
+
+.submit-username {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 42px;
+  border: 4px solid #feda4a;
+  display: inline-block;
+  cursor: pointer;
+  color: #feda4a;
+  font-family: Trebuchet MS;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 10px;
+  text-decoration: none;
+  outline: none;
+}
+.submit-username:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.submit-username:active {
+  position: relative;
+  top: 1px;
+}
+
+/*  */
+/*  */
+/* MAIN GAME */
+/*  */
+/*  */
+
+.maingame-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+}
+
+.contest-content,
+.ranking-content {
+  padding: 10px;
+  border-radius: 20%;
+  border: 10px solid #feda4a9a;
+  background-color: rgba(63, 63, 63, 0.144);
+  position: absolute;
+  top: 10%;
+  left: 50%;
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 600px;
+  color: white;
+  font-size: 2rem;
+}
+
+.title {
+  font-family: "starjedi_special_editionRg";
+  font-size: 4rem;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  text-shadow: rgb(254, 218, 74) 5px 0px 0px,
+    rgb(254, 218, 74) 4.90033px 0.993347px 0px,
+    rgb(254, 218, 74) 4.60531px 1.94709px 0px,
+    rgb(254, 218, 74) 4.12668px 2.82321px 0px,
+    rgb(254, 218, 74) 3.48353px 3.58678px 0px,
+    rgb(254, 218, 74) 2.70151px 4.20736px 0px,
+    rgb(254, 218, 74) 1.81179px 4.6602px 0px,
+    rgb(254, 218, 74) 0.849836px 4.92725px 0px,
+    rgb(254, 218, 74) -0.145998px 4.99787px 0px,
+    rgb(254, 218, 74) -1.13601px 4.86924px 0px,
+    rgb(254, 218, 74) -2.08073px 4.54649px 0px,
+    rgb(254, 218, 74) -2.94251px 4.04248px 0px,
+    rgb(254, 218, 74) -3.68697px 3.37732px 0px,
+    rgb(254, 218, 74) -4.28444px 2.57751px 0px,
+    rgb(254, 218, 74) -4.71111px 1.67494px 0px,
+    rgb(254, 218, 74) -4.94996px 0.7056px 0px,
+    rgb(254, 218, 74) -4.99147px -0.291871px 0px,
+    rgb(254, 218, 74) -4.83399px -1.27771px 0px,
+    rgb(254, 218, 74) -4.48379px -2.2126px 0px,
+    rgb(254, 218, 74) -3.95484px -3.05929px 0px,
+    rgb(254, 218, 74) -3.26822px -3.78401px 0px,
+    rgb(254, 218, 74) -2.4513px -4.35788px 0px,
+    rgb(254, 218, 74) -1.53666px -4.75801px 0px,
+    rgb(254, 218, 74) -0.560763px -4.96845px 0px,
+    rgb(254, 218, 74) 0.437495px -4.98082px 0px,
+    rgb(254, 218, 74) 1.41831px -4.79462px 0px,
+    rgb(254, 218, 74) 2.34258px -4.41727px 0px,
+    rgb(254, 218, 74) 3.17346px -3.86382px 0px,
+    rgb(254, 218, 74) 3.87783px -3.15633px 0px,
+    rgb(254, 218, 74) 4.4276px -2.32301px 0px,
+    rgb(254, 218, 74) 4.80085px -1.39708px 0px,
+    rgb(254, 218, 74) 4.98271px -0.415447px 0px;
+}
+
+.rosco-letter {
+  margin: 10vh 0 0 20vh;
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  background: #feda4a8e;
+  border-radius: 50%;
+  color: rgb(255, 255, 255);
+  -webkit-box-shadow: 2px 2px 2px -2px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 2px 2px 2px -2px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 2px -2px rgba(0, 0, 0, 0.5);
+}
+
+.pasapalabraanswer {
+  background-color: rgba(255, 187, 0, 0.377);
+}
+.rightanswer {
+  background-color: rgba(0, 221, 92, 0.377);
+}
+
+.wronganswer {
+  background-color: rgba(255, 0, 0, 0.377);
+}
+
+.active {
+  background-color: rgba(53, 137, 170, 0.377);
+  -webkit-animation: active 0.5s ease-in-out infinite both;
+  animation: active 0.5s ease-in-out infinite both;
+}
+
+.intro-active {
+  visibility: hidden;
+  opacity: 0;
+}
+
+@-webkit-keyframes active {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes pulsate-bck {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.pasapalabra-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pasapalabra-btns {
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#game-answer {
+  border-width: 2px;
+  border-style: solid;
+  padding: 10px;
+  background-color: #74714c70;
+  border: 3px solid #feda4a;
+  color: rgb(255, 255, 255);
+  font-size: 19px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  outline: none;
+}
+
+#btn-answer,
+#btn-pasapalabra {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 42px;
+  border: 4px solid #feda4a;
+  display: inline-block;
+  cursor: pointer;
+  color: #feda4a;
+  font-family: Trebuchet MS;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 18px 40px;
+  text-decoration: none;
+  outline: none;
+}
+#btn-answer:hover,
+#btn-pasapalabra:hover {
+  background-color: rgba(59, 55, 55, 0.247);
+}
+
+.img-r2d2 {
+  position: absolute;
+  top: 80vh;
+  left: 3%;
+}
+
+.r2d2-animation {
+  animation-name: r2d2;
+  animation-duration: 180s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #feda4a;
+  font-size: 1.5rem;
+  height: 45px;
+  width: 45px;
+  position: absolute;
+  top: 73vh;
+  left: 4%;
+  background-color: rgba(63, 63, 63, 0.144);
+  border-radius: 50%;
+  border: 4px solid #feda4a;
+  font-family: "Trebuchet MS";
+}
+
+@keyframes r2d2 {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(800px);
+  }
+}
