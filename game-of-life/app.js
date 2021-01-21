@@ -19,10 +19,29 @@ function createChart(rows, columns) {
   return chart;
 }
 
+function checkNeighbours() {
+  let currentCell;
+
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < columns; j++) {
+      currentCell = chart[i][j];
+    }
+    chart.push(current);
+  }
+
+  chart.map((el) => {
+    el.map((num) => {
+      console.log(num);
+    });
+  });
+  //esto me itera por todo
+}
+
 function drawChart(rows, columns) {
   for (let i = 0; i < rows; i++) {
     let newRow = document.createElement("div");
     newRow.classList.add(`row-${i}`);
+    newRow.classList.add(`row`);
     tableElement.appendChild(newRow);
     let tempRow = document.querySelector(`.row-${i}`);
     for (let j = 0; j < columns; j++) {
