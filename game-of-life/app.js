@@ -15,31 +15,6 @@ function createChart(rows, columns) {
   return chart;
 }
 
-/* function checkNeighbours(rows, columns, chart) {
-  for (let i = 0; i < rows; i++) {
-    for (let j = 0; j < columns; j++) {
-      let previousRow = chart[i - 1] || false;
-      let currentRow = chart[i];
-      let nextRow = chart[i + 1] || false;
-
-      let aliveAroundCurrent =
-        +!!previousRow[j - 1] +
-        +!!previousRow[j] +
-        +!!previousRow[j + 1] +
-        +!!currentRow[j + 1] +
-        +!!currentRow[j - 1] +
-        +!!nextRow[j - 1] +
-        +!!nextRow[j] +
-        +!!nextRow[j + 1];
-
-      console.log(aliveAroundCurrent);
-      if (aliveAroundCurrent > 1) {
-        console.log("this is i " + i + "and j is " + j);
-      }
-    }
-  }
-} */
-
 //WITH THIS FUNCTION, FOR A GIVEN CELL, I WILL CHECK ITS SURROUNDING NEIGHBOURS
 
 function createNextGen(rows, columns, chart) {
@@ -79,27 +54,6 @@ function checkNeighbours(i, j, chart) {
 // Any dead cell with three live neighbours becomes a live cell.
 // All other live cells die in the next generation. Similarly, all other dead cells stay dead.
 
-/* function updateThisGen(i, j, chart) {
-  let currentCell = chart[i][j];
-  let nextGenCell;
-  let currentRow = [...chart[i]];
-  //This variable stores the state of the cell i'm checking but for ITS NEXT GEN because the current gen must stay the same state!!
-  let surroundingCellsAlive = checkNeighbours(i, j, chart);
-  if (surroundingCellsAlive > 1 && currentCell > 1) {
-    nextGenCell = 1;
-  } else if (surroundingCellsAlive > 2 && currentCell === 0) {
-    nextGenCell = 1;
-  } else {
-    nextGenCell = 0;
-  }
-
-  updatedGen = [...chart];
-  currentRow[i] = nextGenCell;
-  updatedGen[i] = [...currentRow];
-
-  return updatedGen;
-} */
-
 function updateCurrentCell(i, j, chart) {
   let currentCell = chart[i][j];
   let nextGenCell;
@@ -124,26 +78,41 @@ function updateCurrentCell(i, j, chart) {
   return nextGenCell;
 }
 
-function drawChart(rows, columns, chart) {
+function interactiveChart(rows, columns, chart) {
   tableElement.innerHTML = "";
   for (let i = 0; i < rows; i++) {
     let newRow = document.createElement("div");
     newRow.classList.add(`row-${i}`);
     newRow.classList.add(`row`);
     tableElement.appendChild(newRow);
-    let tempRow = document.querySelector(`.row-${i}`);
+
     for (let j = 0; j < columns; j++) {
-      let tempCell = document.createElement("div");
-      tempCell.classList.add("cell");
-      tempCell.classList.add(`'cell-${j}-${i}`);
+      let cellDiv = document.createElement("div");
+      cellDiv.classList.add("cell");
+      cellDiv.classList.add(`'cell-${j}-${i}`);
       if (chart[i][j] === 0) {
-        tempCell.classList.add("is-dead");
+        cellDiv.classList.add("is-dead");
       } else {
-        tempCell.classList.add("is-alive");
+        cellDiv.classList.add("is-alive");
       }
-      tempRow.appendChild(tempCell);
+      cellDiv.addEventListener("click", () => {
+        if (cellDiv.classList.contains("is-alive")) {
+          cellDiv.classList.add("is-dead");
+          cellDiv.classList.remove("is-alive");
+          chart[i][j] = 0;
+        } else {
+          cellDiv.classList.remove("is-dead");
+          cellDiv.classList.add("is-alive");
+          chart[i][j] = 1;
+        }
+      });
+      newRow.appendChild(cellDiv);
     }
   }
+}
+
+function changeStateOnClick() {
+  console.log(i);
 }
 
 const ROWS = 5;
@@ -153,15 +122,26 @@ const CHART = createChart(ROWS, COLUMNS);
 CHART[2] = [0, 1, 1, 1, 0];
 CHART[3][1] = 1;
 
-drawChart(ROWS, COLUMNS, CHART);
+interactiveChart(ROWS, COLUMNS, CHART);
 let updatedChart = createNextGen(ROWS, COLUMNS, CHART);
-drawChart(ROWS, COLUMNS, updatedChart);
+interactiveChart(ROWS, COLUMNS, updatedChart);
 
 function doBoth() {
   updatedChart = createNextGen(ROWS, COLUMNS, updatedChart);
   createNextGen(ROWS, COLUMNS, updatedChart);
-  drawChart(ROWS, COLUMNS, updatedChart);
+  interactiveChart(ROWS, COLUMNS, updatedChart);
   console.log("HELLO");
 }
 
 //setInterval(doBoth, 500);
+
+/* EVENT LISTENERS */
+
+function startAndStopGame() {}
+
+document
+  .querySelector("#start-game")
+  .addEventListener("click", () => (gameOn = setInterval(doBoth, 500)));
+document
+  .querySelector("#stop-game")
+  .addEventListener("click", () => clearInterval(gameOn));
