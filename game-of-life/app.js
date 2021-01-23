@@ -1,7 +1,7 @@
-console.log("hello world");
+console.log("hellos world");
 
 /* SELECTORS */
-let tableElement = document.querySelector(".drawn-chart");
+let tableElement = document.querySelector(".table-container");
 
 function createChart(rows, columns) {
   let chart = [];
@@ -124,7 +124,8 @@ function updateCurrentCell(i, j, chart) {
   return nextGenCell;
 }
 
-function drawChart(rows, columns) {
+function drawChart(rows, columns, chart) {
+  tableElement.innerHTML = "";
   for (let i = 0; i < rows; i++) {
     let newRow = document.createElement("div");
     newRow.classList.add(`row-${i}`);
@@ -135,9 +136,11 @@ function drawChart(rows, columns) {
       let tempCell = document.createElement("div");
       tempCell.classList.add("cell");
       tempCell.classList.add(`'cell-${j}-${i}`);
-
-      let tempRow = document.querySelector(`.row-${i}`);
-
+      if (chart[i][j] === 0) {
+        tempCell.classList.add("is-dead");
+      } else {
+        tempCell.classList.add("is-alive");
+      }
       tempRow.appendChild(tempCell);
     }
   }
@@ -146,7 +149,19 @@ function drawChart(rows, columns) {
 const ROWS = 5;
 const COLUMNS = ROWS;
 const CHART = createChart(ROWS, COLUMNS);
+
 CHART[2] = [0, 1, 1, 1, 0];
 CHART[3][1] = 1;
 
-drawChart(ROWS, COLUMNS);
+drawChart(ROWS, COLUMNS, CHART);
+let updatedChart = createNextGen(ROWS, COLUMNS, CHART);
+drawChart(ROWS, COLUMNS, updatedChart);
+
+function doBoth() {
+  updatedChart = createNextGen(ROWS, COLUMNS, updatedChart);
+  createNextGen(ROWS, COLUMNS, updatedChart);
+  drawChart(ROWS, COLUMNS, updatedChart);
+  console.log("HELLO");
+}
+
+//setInterval(doBoth, 500);
