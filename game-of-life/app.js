@@ -7,6 +7,7 @@ const GameOfLife = function () {
   this.currentUpdatedGen = this.createNextGen(size, this.previousUpdatedGen); */
 
   //This function creates the first gen, with all DEAD CELLS (0)
+  //Also asigns all dead cells to the "updated gen"
   this.createChart = function (size) {
     for (let i = 0; i < size; i++) {
       let currentRow = [];
@@ -15,7 +16,13 @@ const GameOfLife = function () {
       }
       this.previousUpdatedGen.push(currentRow);
     }
-    this.createNextGen(size, this.previousUpdatedGen);
+    for (let i = 0; i < size; i++) {
+      let currentRow = [];
+      for (let j = 0; j < size; j++) {
+        currentRow.push(0);
+      }
+      this.currentUpdatedGen.push(currentRow);
+    }
   };
 
   //For a given cell, it checks its surrounding neighbours
