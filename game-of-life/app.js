@@ -40,7 +40,7 @@ const GameOfLife = function () {
       }
       this.currentUpdatedGen[i] = [...thisRow];
     }
-    this.interactiveChart(size, this.previousUpdatedGen);
+    //this.interactiveChart(size, this.previousUpdatedGen);
   };
 
   // Any live cell with two or three live neighbours survives.
@@ -58,15 +58,19 @@ const GameOfLife = function () {
 
     if (currentCell === 1 && surroundingCellsAlive < 2) {
       nextGenCell = 0;
+      this.updateState("dead", j, i);
     } else if (
       currentCell === 1 &&
       (surroundingCellsAlive === 2 || surroundingCellsAlive === 3)
     ) {
       nextGenCell = 1;
+      this.updateState("alive", j, i);
     } else if (currentCell === 1 && surroundingCellsAlive > 3) {
       nextGenCell = 0;
+      this.updateState("dead", j, i);
     } else if (currentCell === 0 && surroundingCellsAlive === 3) {
       nextGenCell = 1;
+      this.updateState("alive", j, i);
     } else {
       nextGenCell = currentCell;
     }
@@ -93,6 +97,18 @@ const GameOfLife = function () {
     return aliveAroundCurrent;
   };
 
+  //When the 'RANDOMIZE' button is clicked, this function will run through the already created chart, and will randomly update its values
+
+  this.randomizeChart = function (size) {
+    for (let i = 0; i < size; i++) {
+      for (let j = 0; j < size; j++) {
+        this.previousUpdatedGen[i][j] = randomizeNumber(0, 1);
+        this.currentUpdatedGen[i][j] = this.previousUpdatedGen[i][j];
+      }
+    }
+    this.interactiveChart(size, this.previousUpdatedGen);
+  };
+
   //This function will create the chart shown on the website
   this.interactiveChart = function (size, chart) {
     tableElement.innerHTML = "";
@@ -105,11 +121,12 @@ const GameOfLife = function () {
       for (let j = 0; j < size; j++) {
         let cellDiv = document.createElement("div");
         cellDiv.classList.add("cell");
-        cellDiv.classList.add(`'cell-${j}-${i}`);
+        cellDiv.classList.add(`cell-${j}-${i}`);
         if (chart[i][j] === 0) {
           cellDiv.classList.add("is-dead");
         } else {
           cellDiv.classList.add("is-alive");
+          cellDiv.style.backgroundColor = colorPalette[randomizeNumber(0, 8)];
         }
         cellDiv.addEventListener("click", () => {
           this.addStateClass(cellDiv, i, j);
@@ -119,16 +136,33 @@ const GameOfLife = function () {
     }
   };
 
+  this.updateState = function (state, j, i) {
+    let thisCell = document.querySelector(`.cell-${j}-${i}`);
+    if (state === "alive") {
+      thisCell.classList.remove("is-dead");
+      thisCell.classList.add("is-alive");
+      thisCell.style.backgroundColor = colorPalette[randomizeNumber(0, 8)];
+    } else {
+      thisCell.classList.add("is-dead");
+      thisCell.classList.remove("is-alive");
+      thisCell.style.backgroundColor = "";
+    }
+  };
+
   //This function adds the class-name to each cell that will give it its corresponding color
   this.addStateClass = function (cell, i, j) {
     if (cell.classList.contains("is-alive")) {
       cell.classList.add("is-dead");
       cell.classList.remove("is-alive");
+      cell.style.backgroundColor = "";
+
       this.currentUpdatedGen[i][j] = 0;
       this.previousUpdatedGen[i][j] = 0;
     } else {
       cell.classList.remove("is-dead");
       cell.classList.add("is-alive");
+      cell.style.backgroundColor = colorPalette[randomizeNumber(0, 8)];
+
       this.currentUpdatedGen[i][j] = 1;
       this.previousUpdatedGen[i][j] = 1;
     }
@@ -145,7 +179,6 @@ function startGame() {
   setTimer = setInterval(() => {
     game.createNextGen(setSize(), game.previousUpdatedGen);
     counter++;
-    console.log(counter);
   }, 500);
 }
 
@@ -167,6 +200,10 @@ document
 
 document.querySelector("#get-table").addEventListener("click", () => drawMe());
 
+document.querySelector("#randomize").addEventListener("click", () => {
+  game.randomizeChart(setSize());
+});
+
 function setSize() {
   return parseInt(document.querySelector("#size-cols").value);
 }
@@ -178,9 +215,21 @@ function drawMe() {
   game.currentUpdatedGen = [];
   game.previousUpdatedGen = [];
   game.createChart(setSize());
-  console.log("yo");
 }
 
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-[0, 1, 1, 1, 1, 1, 1, 0, 0, 0];
-[0, 0, 0, 1, 1, 1, 0, 0, 0, 0];
+const colorPalette = [
+  "#F8B195",
+  "#F67280",
+  "#C06C84",
+  "#6C5B7B",
+  "#355C7D",
+  "#F8B195",
+  "#F67280",
+  "#C06C84",
+];
+
+function randomizeNumber(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
