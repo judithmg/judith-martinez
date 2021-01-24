@@ -3,6 +3,7 @@ let tableElement = document.querySelector(".table-container");
 const GameOfLife = function () {
   this.previousUpdatedGen = [];
   this.currentUpdatedGen = [];
+  this.currentCellStatus = 0;
   /*   this.previousUpdatedGen = this.createNextGen(sizeSelector, this.initialGen);
   this.currentUpdatedGen = this.createNextGen(size, this.previousUpdatedGen); */
 
@@ -58,22 +59,20 @@ const GameOfLife = function () {
 
     if (currentCell === 1 && surroundingCellsAlive < 2) {
       nextGenCell = 0;
-      this.updateState("dead", j, i);
     } else if (
       currentCell === 1 &&
       (surroundingCellsAlive === 2 || surroundingCellsAlive === 3)
     ) {
       nextGenCell = 1;
-      this.updateState("alive", j, i);
     } else if (currentCell === 1 && surroundingCellsAlive > 3) {
       nextGenCell = 0;
-      this.updateState("dead", j, i);
     } else if (currentCell === 0 && surroundingCellsAlive === 3) {
       nextGenCell = 1;
-      this.updateState("alive", j, i);
     } else {
       nextGenCell = currentCell;
     }
+    this.currentCellStatus = nextGenCell;
+    this.updateState(j, i);
 
     return nextGenCell;
   };
@@ -136,9 +135,9 @@ const GameOfLife = function () {
     }
   };
 
-  this.updateState = function (state, j, i) {
+  this.updateState = function (j, i) {
     let thisCell = document.querySelector(`.cell-${j}-${i}`);
-    if (state === "alive") {
+    if (this.currentCellStatus === 1) {
       thisCell.classList.remove("is-dead");
       thisCell.classList.add("is-alive");
       thisCell.style.backgroundColor = colorPalette[randomizeNumber(0, 8)];
@@ -179,6 +178,7 @@ function startGame() {
   setTimer = setInterval(() => {
     game.createNextGen(setSize(), game.previousUpdatedGen);
     counter++;
+    document.querySelector("#gens").innerHTML = counter;
   }, 500);
 }
 
