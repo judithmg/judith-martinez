@@ -23,12 +23,13 @@ const GameOfLife = function () {
       }
       this.currentUpdatedGen.push(currentRow);
     }
-    this.interactiveChart(size, this.currentUpdatedGen);
+    this.interactiveChart(size, this.previousUpdatedGen);
   };
 
   //This function creates the next generation. For each cell, using the parameters obtained after counting the surrounding neighbours, it updates its state
   //CHART INPUT MUST BE THE GEN THAT IS ABOUT TO BE UPDATED
   this.createNextGen = function (size, chart) {
+    this.previousUpdatedGen = [...this.currentUpdatedGen];
     this.currentUpdatedGen = [...chart];
     for (let i = 0; i < size; i++) {
       let thisRow = [...this.currentUpdatedGen[i]];
@@ -39,7 +40,7 @@ const GameOfLife = function () {
       }
       this.currentUpdatedGen[i] = [...thisRow];
     }
-    this.interactiveChart(size, this.currentUpdatedGen);
+    this.interactiveChart(size, this.previousUpdatedGen);
   };
 
   // Any live cell with two or three live neighbours survives.
@@ -179,3 +180,7 @@ function drawMe() {
   game.createChart(setSize());
   console.log("yo");
 }
+
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+[0, 1, 1, 1, 1, 1, 1, 0, 0, 0];
+[0, 0, 0, 1, 1, 1, 0, 0, 0, 0];
