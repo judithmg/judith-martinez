@@ -252,7 +252,7 @@ function startGame() {
   if (setTimer) return;
 
   setTimer = setInterval(() => {
-    doBoth();
+    game.createNextGen(sizeSelector, game.previousUpdatedGen);
   }, 500);
 }
 
