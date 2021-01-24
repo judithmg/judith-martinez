@@ -1,7 +1,9 @@
-console.log("hellos world");
-
-/* SELECTORS */
 let tableElement = document.querySelector(".table-container");
+
+const GameOfLife = function () {
+  this.currentGen = [];
+  this.updatedGen = [];
+};
 
 function createChart(rows, columns) {
   let chart = [];
@@ -14,8 +16,6 @@ function createChart(rows, columns) {
   }
   return chart;
 }
-
-//WITH THIS FUNCTION, FOR A GIVEN CELL, I WILL CHECK ITS SURROUNDING NEIGHBOURS
 
 function createNextGen(rows, columns, chart) {
   let fullGen = [...chart];
@@ -31,7 +31,7 @@ function createNextGen(rows, columns, chart) {
   }
   return fullGen;
 }
-
+//WITH THIS FUNCTION, FOR A GIVEN CELL, I WILL CHECK ITS SURROUNDING NEIGHBOURS
 function checkNeighbours(i, j, chart) {
   let previousRow = chart[i - 1] || false;
   let currentRow = chart[i];
@@ -53,7 +53,6 @@ function checkNeighbours(i, j, chart) {
 // Any live cell with two or three live neighbours survives.
 // Any dead cell with three live neighbours becomes a live cell.
 // All other live cells die in the next generation. Similarly, all other dead cells stay dead.
-
 function updateCurrentCell(i, j, chart) {
   let currentCell = chart[i][j];
   let nextGenCell;
@@ -111,11 +110,7 @@ function interactiveChart(rows, columns, chart) {
   }
 }
 
-function changeStateOnClick() {
-  console.log(i);
-}
-
-const ROWS = 5;
+const ROWS = 20;
 const COLUMNS = ROWS;
 const CHART = createChart(ROWS, COLUMNS);
 
@@ -137,11 +132,28 @@ function doBoth() {
 
 /* EVENT LISTENERS */
 
-function startAndStopGame() {}
+let setTimer = false;
+
+function startGame() {
+  if (setTimer) return;
+
+  setTimer = setInterval(() => {
+    doBoth();
+  }, 500);
+}
+
+function stopGame() {
+  clearInterval(setTimer);
+  setTimer = false;
+}
 
 document
   .querySelector("#start-game")
-  .addEventListener("click", () => (gameOn = setInterval(doBoth, 500)));
+  .addEventListener("click", () => startGame());
 document
   .querySelector("#stop-game")
-  .addEventListener("click", () => clearInterval(gameOn));
+  .addEventListener("click", () => stopGame());
+
+document
+  .querySelector("#rows-cols")
+  .addEventListener("change", () => console.log("YES"));
