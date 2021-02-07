@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Nioicon";
+  src: url("assets/fonts/Nioicon.woff");
+}
+
 body {
   box-sizing: border-box;
   margin: 0;
@@ -11,6 +16,10 @@ li {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+ul {
+  padding: 0;
 }
 
 .header-menu__container {
@@ -86,11 +95,11 @@ a {
 .header-menu__notifications:hover {
   color: #465fff;
   background-color: #e5e9f2;
-  transition: color 0.4s, background-color 0.4s;
-  transition-property: color, background-color;
-  transition-duration: 0.4s, 0.4s;
-  transition-timing-function: ease, ease;
-  transition-delay: 0s, 0s;
+  transition: all 0.4s;
+  transition-property: all;
+  transition-duration: 0.4s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
 }
 
 .notifications-dropdown__container {
@@ -118,16 +127,43 @@ a {
   color: #465fff;
 }
 .notifications-dropdown__list {
-  max-height: 280px;
-  overflow: auto;
   padding: 0;
+  overflow: auto;
+  max-height: 240px;
+}
+
+.notifications-dropdown__list::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.096);
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.notifications-dropdown__list::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f5f5f5;
+}
+
+.notifications-dropdown__list::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #465fff;
 }
 .notifications-dropdown__item {
   display: flex;
   flex-direction: row;
   align-items: center;
   border-bottom: 1px solid #e5e9f2;
-  position: relative;
+}
+
+.notifications-dropdown__sticky {
+  border-radius: 0px 4px;
+  border-top: 1px solid #e5e9f2;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  color: #465fff;
 }
 
 .notifications-dropdown__status {
@@ -141,6 +177,7 @@ a {
   background-color: #fef6e0;
   border-radius: 50%;
 }
+
 .notifications-dropdown__status::before {
   font-family: "Font Awesome 5 Free";
   font-weight: 400;
@@ -154,18 +191,6 @@ a {
 .notifications-dropdown__time {
   font-size: 11px;
   color: #8094ae;
-}
-.notifications-dropdown__sticky {
-  border-radius: 0px 4px;
-  border-top: 1px solid #e5e9f2;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: calc(100% - 20px);
-  position: absolute;
-  bottom: 0;
-  color: #465fff;
 }
 
 .header-menu__user {
@@ -215,10 +240,9 @@ a {
 
 .header-menu__menu::before {
   font-family: "Font Awesome 5 Free";
-  font-weight: 400;
   font-size: 20px;
   text-rendering: auto;
-  content: "\f007";
+  content: "\f0c9";
   -webkit-font-smoothing: antialiased;
 }
 
@@ -241,12 +265,59 @@ a {
   padding: 5px;
 }
 
-.user-dropdown__item::before {
+.user-dropdown__item .icon {
+  width: 24px;
+  height: 18px;
+}
+
+.user-profile::before {
   font-family: "Font Awesome 5 Free";
   font-weight: 400;
   font-size: 15px;
   text-rendering: auto;
   content: "\f007";
+  -webkit-font-smoothing: antialiased;
+  padding-right: 10px;
+}
+.account-config::before {
+  font-family: "Font Awesome 5 Free";
+  font-size: 15px;
+  text-rendering: auto;
+  content: "\f013";
+  -webkit-font-smoothing: antialiased;
+  padding-right: 10px;
+}
+.user-subscr::before {
+  font-family: "Font Awesome 5 Free";
+  font-size: 15px;
+  text-rendering: auto;
+  content: "\f153";
+  -webkit-font-smoothing: antialiased;
+  padding-right: 10px;
+}
+.users-account::before {
+  font-family: "Font Awesome 5 Free";
+  font-size: 15px;
+  text-rendering: auto;
+  content: "\f0c0";
+  -webkit-font-smoothing: antialiased;
+  padding-right: 10px;
+}
+.night-mode::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  font-size: 15px;
+  text-rendering: auto;
+  content: "\f186";
+  -webkit-font-smoothing: antialiased;
+  padding-right: 10px;
+}
+
+.user-exit::before {
+  font-family: "Font Awesome 5 Free";
+  font-size: 15px;
+  text-rendering: auto;
+  content: "\f2f5";
   -webkit-font-smoothing: antialiased;
   padding-right: 10px;
 }

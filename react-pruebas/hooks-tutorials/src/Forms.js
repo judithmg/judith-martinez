@@ -1,5 +1,15 @@
 import React, { useState } from "react";
 
+export function YesNoQuestion(props) {
+  return (
+    <div>
+      <p>{props.prompt}</p>
+      <input value="Yes" />
+      <input value="No" />
+    </div>
+  );
+}
+
 function Forms() {
   const [email, setEmail] = useState("");
   const [list, setList] = useState([]);
