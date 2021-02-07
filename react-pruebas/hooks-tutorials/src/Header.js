@@ -110,7 +110,10 @@ function Header() {
           <DropdownNotificationsMenu />
 
           <li className="header-menu__user"></li>
-          <li className="header-menu__menu"></li>
+          
+          <a href="#" className="animation-b">
+            <li className="header-menu__menu"></li>
+          </a>
 
           <DropdownUserMenu />
         </ul>
