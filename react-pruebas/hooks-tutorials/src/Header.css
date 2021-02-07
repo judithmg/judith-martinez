@@ -81,8 +81,8 @@ ul {
   width: 42px;
   height: 42px;
   background-color: #fff;
-  cursor: pointer;
   border-radius: 50%;
+  cursor: pointer;
 }
 .header-menu__notifications::before {
   font-family: "Font Awesome 5 Free";
