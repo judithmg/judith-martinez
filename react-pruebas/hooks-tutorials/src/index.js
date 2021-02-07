@@ -1,14 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import Header from "./Header";
 import Button from "./Button";
 import Forms from "./Forms";
-import reportWebVitals from "./reportWebVitals";
+
+export function YesNoQuestion(props) {
+  return (
+    <div>
+      <p>{props.prompt}</p>
+      <input value="Yes" />
+      <input value="No" />
+    </div>
+  );
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Button />
+  <>
+    {/*  <Header /> */}
     <Forms />
-  </React.StrictMode>,
+    <YesNoQuestion prompt="How are you?" />,
+  </>,
   document.getElementById("root")
 );
