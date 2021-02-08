@@ -1,8 +1,7 @@
 import React from "react";
 import "./Header.css";
-import logo from "./images/logo-dark.png";
 
-function DropdownNotificationsMenu() {
+export default function DropdownNotificationsMenu() {
   return (
     <div className="notifications-dropdown__container">
       <div className="notifications-dropdown__head">
@@ -66,60 +65,3 @@ function DropdownNotificationsMenu() {
     </div>
   );
 }
-
-function DropdownUserMenu() {
-  return (
-    <div className="user-dropdown__container">
-      <ul className="user-dropdown__list">
-        <li className="user-dropdown__item">
-          <span className="user-profile icon"></span>Mi perfil
-        </li>
-        <li className="user-dropdown__item">
-          <span className="account-config icon"></span>Configuración cuenta
-        </li>
-        <li className="user-dropdown__item">
-          <span className="user-subscr icon"></span>Mi suscripción
-        </li>
-        <li className="user-dropdown__item">
-          <span className="users-account icon"></span>Usuarios de la cuenta
-        </li>
-        <li className="user-dropdown__item">
-          <span className="night-mode icon"></span>Modo nocturno
-        </li>
-        <li className="user-dropdown__item">
-          <span className="user-exit icon"></span>Salir
-        </li>
-      </ul>
-    </div>
-  );
-}
-
-function Header() {
-  return (
-    <>
-      <div className="header-menu__container">
-        <img src={logo} className="header-menu__logo"></img>
-        <ul className="header-menu__links">
-          <li className="header-menu__add">
-            <a href="#">Añadir Sociedad</a>
-          </li>
-          <a href="" className="animation-a">
-            <li className="header-menu__notifications icon"></li>
-          </a>
-
-          <DropdownNotificationsMenu />
-
-          <li className="header-menu__user"></li>
-          
-          <a href="#" className="animation-b">
-            <li className="header-menu__menu"></li>
-          </a>
-
-          <DropdownUserMenu />
-        </ul>
-      </div>
-    </>
-  );
-}
-
-export { Header, DropdownNotificationsMenu, DropdownUserMenu };
