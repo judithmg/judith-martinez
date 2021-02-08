@@ -31,4 +31,16 @@ describe("Given a Header component", () => {
       expect(h2.textContent).toBe("2 hrs ago");
     });
   });
+
+  describe("When there is no hero id", () => {
+    test("Then display an error message", () => {
+      act(() => {
+        render(<DropdownNotificationsMenu />, container);
+      });
+
+      const h2 = container.querySelector(".notifications-dropdown__time");
+
+      expect(h2.textContent).toBe("2 hrs ago");
+    });
+  });
 });
